@@ -15,7 +15,13 @@ const limiter = rateLimit({
 // Authenticate user with rate limiting
 router.post('/', limiter, async (req, res) => {
     try {
-        const user = await User.findOne({ username: req.body.username });
+        const username = req.body.username;
+
+        // Sanitize and escape the user-provided input
+        const sanitizedUsername = username.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+        const user = await User.findOne({ username: new RegExp('^' + sanitizedUsername + '$', 'i') });
+        
         if (!user) 
             return res.status(401).json({ error: 'Invalid username or password' });
 
@@ -32,6 +38,7 @@ router.post('/', limiter, async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
 
 // Export router
 module.exports = router;
