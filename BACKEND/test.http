@@ -1,0 +1,55 @@
+// Desc: This is a REST API for a social media app. It allows users to create posts, view posts, and delete posts. It also allows users to create accounts and authenticate themselves.
+//Create user
+POST https://localhost:3000/api/user HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "tester12",
+  "firstName": "Tester1",
+  "lastName": "eight84",
+  "password": "Password12!"
+}
+
+//-----------------------------------------------
+###
+//Authenticate user
+POST https://localhost:3000/api/auth HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "siya@gmail.com",
+  "password": "BlackSam02@"
+}
+
+//-----------------------------------------------
+###
+//Create post
+POST https://localhost:3000/api/posts HTTP/1.1
+Content-Type: application/json
+x-auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTIzZTNjNzZjZmRkOTRmNzlhYjA0YTYiLCJpYXQiOjE2OTY4NTU3MTF9.ink0SHzbm07W1lPNAyRBtymmjnGzJd_aSADSDu_g10s
+
+{
+  "title": "Yep",
+  "description": "T whdj",
+  "departmentCode": "GHHE"
+}
+//-----------------------------------------------
+###
+//View all posts
+GET https://localhost:3000/api/posts HTTP/1.1
+x-auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTIzZTNjNzZjZmRkOTRmNzlhYjA0YTYiLCJpYXQiOjE2OTY4NTU3MTF9.ink0SHzbm07W1lPNAyRBtymmjnGzJd_aSADSDu_g10s
+
+//-----------------------------------------------
+###
+//View post by id
+GET https://localhost:3000/api/posts/65240a4c7fe39faf97b47125 HTTP/1.1
+x-auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTIzZTNjNzZjZmRkOTRmNzlhYjA0YTYiLCJpYXQiOjE2OTY4NTU3MTF9.ink0SHzbm07W1lPNAyRBtymmjnGzJd_aSADSDu_g10s
+
+//-----------------------------------------------
+###
+//Delete post by id
+DELETE https://localhost:3000/api/posts/6523f7447fe39faf97b4711e HTTP/1.1
+x-auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTIzZTNjNzZjZmRkOTRmNzlhYjA0YTYiLCJpYXQiOjE2OTY4NTU3MTF9.ink0SHzbm07W1lPNAyRBtymmjnGzJd_aSADSDu_g10s
+
+```
+//--------------------------...ooo000 End of file 000ooo...--------------------------

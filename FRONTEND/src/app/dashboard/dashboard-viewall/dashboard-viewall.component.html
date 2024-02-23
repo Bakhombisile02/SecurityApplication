@@ -1,0 +1,14 @@
+<div class="board-card" *ngFor="let board of boards">
+    <div class="board-content">
+        <h3>{{ board.title }}</h3>
+        <p class="description">Description: {{ board.description }}</p>
+        <p class="department">Department Code: {{ board.departmentCode }}</p>
+        <p class="version">Version: {{ board.__v }}</p>
+    </div>
+    <button class="delete-button" (click)="onDelete(board._id)">Delete</button>
+</div>
+
+<div class="button-container">
+    <button class="bn54" (click)="goToPost()">Post</button>
+    <button class="bn55" (click)="goLogOut()">Logout</button>
+  </div>
