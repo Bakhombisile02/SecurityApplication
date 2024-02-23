@@ -9,7 +9,7 @@ const cors = require('cors');
 const hsts = require('./middleware/hsts');
 const mongoose = require('mongoose');
 const morgan = require('morgan')
-const ExpressBrute = require('express-brute');
+const rateLimit = require('express-rate-limit');
 
 
 //set port
@@ -53,15 +53,14 @@ app.use(
 );
 
 app.use(morgan('combined'));
-const store = new ExpressBrute.MemoryStore(); // You can choose other stores too
-const bruteforce = new ExpressBrute(store, {
- freeRetries: 100,
- minWait: 5*60*1000, // 5 minutes
- maxWait: 60*60*1000, // 1 hour
- lifetime: 24*60*60, // 1 day
-});
 
-app.use(bruteforce.prevent);
+const limiter = rateLimit({
+    windowMs: 5 * 60 * 1000, // 5 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+  });
+  
+  app.use(limiter);
+  
 app.use(cors({origin: 'https://localhost:4200', optionsSuccessStatus: 200}));
 app.use(express.json());
 app.use(hsts);
