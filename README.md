@@ -56,9 +56,9 @@ npm install
 
 ## 5. Usage <a name="usage"></a>
 
-1.regenerate new certificate and key using this software `https://slproweb.com/products/Win32OpenSSL.html`.
+1. regenerate new certificate and key using this software `https://slproweb.com/products/Win32OpenSSL.html`.
 
-2.open a new terminal in visual studio
+2. open a new terminal in visual studio
 
 3. navigate to BACKEND using `cd BACKEND`
    
