@@ -56,12 +56,23 @@ npm install
 
 ## 5. Usage <a name="usage"></a>
 
-1. Start the server:
-npm install
+1.regenerate new certificate and key using this software `https://slproweb.com/products/Win32OpenSSL.html`.
 
-3. Open your web browser and go to `http://localhost:3000`.
+2.open a new terminal in visual studio
 
-4. Register or log in to start using the application.
+3. navigate to BACKEND using `cd BACKEND`
+   
+4. install node modules using `npm install`.
+
+5. start server using `npm run start`.
+
+6. navigate to FRONTEND using `cd FRONTEND`
+
+7. install node modules using `npm install`.
+    
+8. start application by running `ng serve –open`
+
+9. Register or log in to start using the application.
 
 ---
 
