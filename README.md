@@ -14,7 +14,7 @@
 
 ## 1. Introduction <a name="introduction"></a>
 
-Welcome to the GovLink Application Development Security! This application focuses on security and MEAN stack development, providing a robust platform for the national government to coordinate between its many departments. Users can register, log in, create and view board issues, and manage them efficiently.
+Welcome to the GovLink Application Development Security! This application focuses on security and MEAN stack development, providing a robust platform for the national government to coordinate between its many departments. This is a school project that focuses on security and users can register, log in, create and view board issues, and manage them efficiently.
 
 ---
 
