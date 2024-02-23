@@ -22,8 +22,11 @@ router.post('/', limiter, async (req, res) => {
     }
 
     try {
+        // Sanitize and escape the user-provided input
+        const sanitizedUsername = req.body.username.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
         // Check if the username is already taken using Mongoose unique index
-        const existingUser = await User.findOne({ username: req.body.username });
+        const existingUser = await User.findOne({ username: new RegExp('^' + sanitizedUsername + '$', 'i') });
 
         if (existingUser) {
             return res.status(400).json({ error: 'Username already exists.' });
@@ -41,6 +44,7 @@ router.post('/', limiter, async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
 
 
 //-------------------------------------------------------------
