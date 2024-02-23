@@ -14,27 +14,34 @@ const limiter = rateLimit({
 });
 
 //-------------------------------------------------------------
-//create user account with rate limiting
-router.post('/', limiter, async(req,res)=>{
-    const {error} = validateUser(req.body);
-    if(error) return res.status(400).json(error.detail[0].message);
+router.post('/', limiter, async (req, res) => {
+    const { error } = validateUser(req.body);
 
-    //check if username is unique
-    const isUnique = (await User.count({username:req.body.username}))=== 0;//might be a problem
-    if(!isUnique)
-    return res
-    .status(400)
-    .json({error: 'Username already exists.'});
+    if (error) {
+        return res.status(400).json(error.detail[0].message);
+    }
 
-try{
-    const user = new User(req.body);
-    user.password = await hashPassword(user.password);
-    await user.save();
-}catch(err){
-    return res.status(500).json(err);
-}
-res.sendStatus(201);
+    try {
+        // Check if the username is already taken using Mongoose unique index
+        const existingUser = await User.findOne({ username: req.body.username });
+
+        if (existingUser) {
+            return res.status(400).json({ error: 'Username already exists.' });
+        }
+
+        // If the username is unique, create a new user
+        const user = new User(req.body);
+        user.password = await hashPassword(user.password);
+        await user.save();
+
+        res.sendStatus(201);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
+
 
 //-------------------------------------------------------------
 //get current user with rate limiting
