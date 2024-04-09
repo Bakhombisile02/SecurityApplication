@@ -50,9 +50,15 @@ To run this application, you will need the following:
 git clone https://github.com/Bakhombisile02/APDS7311-Application.git
 
 2. Navigate to the project directory:
-cd Backend
+cd BACKEND
 
 3. Install the required dependencies:
+npm install
+
+4. Navigate to the project directory:
+cd FRONTEND
+
+5. Install the required dependencies:
 npm install
 
 
@@ -89,6 +95,14 @@ This application employs several security practices to ensure the safety of data
 - **Password Hashing**: User passwords are securely hashed before being stored in the database.
 
 - **Secure Coding**: Adherence to secure coding practices to mitigate common vulnerabilities.
+  
+- **HTTP Headers Security**: Utilization of Helmet middleware to set secure HTTP headers, including frame options and HSTS, to prevent clickjacking attacks and enforce secure communication over HTTPS.
+
+- **Request Rate Limiting**: Implementation of rate limiting middleware to mitigate against denial-of-service (DoS) attacks by restricting the number of requests per IP address within a specified time window.
+
+- **Cross-Origin Resource Sharing (CORS) Configuration**: Configuration of CORS middleware to restrict cross-origin requests to only trusted origins, enhancing security against cross-origin attacks.
+
+- **Logging and Monitoring**: Usage of Morgan middleware for logging HTTP requests, enabling monitoring and analysis of application traffic for security auditing and troubleshooting.
 
 ---
 
