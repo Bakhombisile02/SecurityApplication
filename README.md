@@ -14,7 +14,11 @@
 
 ## 1. Introduction <a name="introduction"></a>
 
-Welcome to the GovLink Application Development Security! This application focuses on security and MEAN stack development, providing a robust platform for the national government to coordinate between its many departments. This is a school project that focuses on security and users can register, log in, create and view board issues, and manage them efficiently.
+Welcome to GovLink, a secure MEAN stack security application developed as a hypothetical school case study for efficient inter-departmental coordination within national governments. This project was undertaken as part of the third-year curriculum for computer science at Varsity College.
+
+GovLink aims to address the complexities of governmental operations by providing a platform where users can securely register, log in, create, view, and manage board issues. Emphasizing data integrity and confidentiality, GovLink ensures that sensitive governmental information is protected and accessible only to authorized personnel.
+
+Through this project, the goal was to simulate real-world scenarios and challenges faced by government agencies in coordinating their activities. By leveraging modern web technologies and adhering to best practices in security and data management, GovLink demonstrates the potential for digital solutions to streamline governmental processes while maintaining the highest standards of security and privacy.
 
 ---
 
