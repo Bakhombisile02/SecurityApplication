@@ -4,7 +4,7 @@ const {User, validateUser} = require('../models/user');
 const {hashPassword} = require('../utils/hash');
 const auth = require('../middleware/auth');
 const rateLimit = require("express-rate-limit");
-const { body, validationResult } = require('express-validator');
+const { body } = require('express-validator'); // validationResult removed, body kept for sanitizers
 
 //-------------------------------------------------------------
 // Create a rate limiter object

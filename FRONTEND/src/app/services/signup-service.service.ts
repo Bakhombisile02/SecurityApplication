@@ -11,12 +11,12 @@ export class SignupServiceService {
   constructor(private http:HttpClient) { }
 
   signup_service(pusername:string, pfirstName:string, plastName:string, ppassword:string){
-    this.http.post(this.apiUrl, {
+    return this.http.post(this.apiUrl, { // Added return
       username:pusername,
       firstName:pfirstName,
       lastName:plastName,
       password:ppassword
-    })
-    .subscribe(response =>{console.log(response)})
+    });
+    // Removed .subscribe() call, the component should subscribe.
   }
 }

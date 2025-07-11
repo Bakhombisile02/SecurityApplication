@@ -28,7 +28,7 @@ router.post('/',
         body('description').trim().escape(),
         body('departmentCode').trim().escape()
     ],
-    // No explicit handleValidationErrors here if Joi is the primary validator for content rules
+    handleValidationErrors, // Added to handle any potential errors from express-validator
     async(req,res)=>{
         // Joi validation runs on (potentially) sanitized req.body
         const {error} = validateBoard(req.body);
