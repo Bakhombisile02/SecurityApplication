@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
-
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignupServiceService {
+  private apiUrl = `${environment.apiUrl}/user`;
 
   constructor(private http:HttpClient) { }
 
   signup_service(pusername:string, pfirstName:string, plastName:string, ppassword:string){
-    const url = 'https://localhost:3000/api/user'
-    this.http.post(url, {
+    this.http.post(this.apiUrl, {
       username:pusername,
       firstName:pfirstName,
       lastName:plastName,

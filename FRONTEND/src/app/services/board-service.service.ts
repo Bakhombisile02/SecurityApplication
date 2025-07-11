@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BoardServiceService {
-
+  private apiUrl = `${environment.apiUrl}/posts`;
   private boarddisplay:{_id:string, title:string, description:string, departmentCode:string,__v:string }[] = [];
   private updatedboarddisplay = new Subject<{_id:string, title:string, description:string, departmentCode:string,__v:string}[]>();
   private token: string = localStorage.getItem('token') || '';
@@ -19,12 +20,11 @@ export class BoardServiceService {
 
 
   getboard_service() {
-    const url = 'https://localhost:3000/api/posts';
     const headers = new HttpHeaders({
       'x-auth-token': this.token
     });
   
-    this.http.get<{message: string, boards:any}>(url, { headers }) 
+    this.http.get<{message: string, boards:any}>(this.apiUrl, { headers })
       .subscribe( (response: any) => {
         console.log('All posts:', response);
         this.boarddisplay = response ;
@@ -37,7 +37,7 @@ export class BoardServiceService {
   
 
   deletePostById(boardId: string) {
-    const url = `https://localhost:3000/api/posts/${boardId}`;
+    const url = `${this.apiUrl}/${boardId}`;
     const headers = new HttpHeaders({
       'x-auth-token': this.token
     });

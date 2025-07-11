@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostServiceService {
+  private apiUrl = `${environment.apiUrl}/posts`;
   private token: string = localStorage.getItem('token') || '';
 
 
@@ -15,17 +16,16 @@ export class PostServiceService {
     const headers = new HttpHeaders({
       'x-auth-token': this.token
     })
-    const url = 'https://localhost:3000/api/posts'
 
-   this.http.post(url, {
+   this.http.post(this.apiUrl, {
       title: ptitle,
       description: pdescription,
       departmentCode: pdepartmentCode
     }, {headers}).subscribe(
       (response) => {
         // Handle successful post creation
-        console.log(`Post ${response} created successfully!`)
-        alert(`Post ${response} created successfully!`);
+        console.log('Post created successfully!', response); // Log full response for debugging
+        alert('Post created successfully!'); // User-facing alert
       },
       (error) => {
         // Handle post creation errors here
