@@ -8,7 +8,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const hsts = require('./middleware/hsts');
 const mongoose = require('mongoose');
-const morgan = require('morgan')
+const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 
 

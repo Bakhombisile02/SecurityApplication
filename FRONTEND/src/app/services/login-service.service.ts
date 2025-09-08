@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 // import { catchError } from 'rxjs/operators'; // Removed unused import
 // import { throwError } from 'rxjs'; // Removed unused import
 import { environment } from '../../environments/environment';

@@ -34,13 +34,23 @@ router.post('/',
         }
 
         try {
-            // req.body.username is now the sanitized and validated username
-            const user = await User.findOne({ username: req.body.username }); // Using sanitized username
+            // Extract and validate the sanitized username
+            const { username, password } = req.body;
+            
+            // Additional type checking to prevent NoSQL injection
+            if (typeof username !== 'string' || typeof password !== 'string') {
+                return res.status(400).json({ error: 'Invalid input types' });
+            }
+            
+            // Use explicit string matching to prevent object injection
+            const user = await User.findOne({ 
+                username: { $eq: username } // Explicit equality operator prevents injection
+            });
 
             if (!user)
                 return res.status(401).json({ error: 'Invalid username or password' });
 
-            const isValid = await isValidPassword(req.body.password, user.password);
+            const isValid = await isValidPassword(password, user.password);
 
             if (!isValid)
                 return res.status(401).json({ error: 'Invalid username or password' });
