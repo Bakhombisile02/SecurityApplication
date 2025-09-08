@@ -45,7 +45,7 @@ router.post('/',
             if (!isValid)
                 return res.status(401).json({ error: 'Invalid username or password' });
 
-            const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY);
+            const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
             res.send({ token });
 
         } catch (error) {

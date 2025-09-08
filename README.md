@@ -75,14 +75,21 @@ npm install
 4. install node modules using `npm install`.
 
 5. **Configure Backend Environment**:
-   - In the `BACKEND` directory, create a `.env` file by copying from a `.env.example` (if provided) or creating it manually.
-   - Add the following required environment variables to `.env`:
+   - In the `BACKEND` directory, create a `.env` file by copying from `.env.example`:
+     ```bash
+     cp .env.example .env
      ```
-     MONGODB_URL=your_mongodb_connection_string
-     JWT_SECRET_KEY=your_strong_jwt_secret_key
+   - Edit the `.env` file and replace the placeholder values with your actual configuration:
+     ```
+     MONGODB_URL=your_actual_mongodb_connection_string
+     JWT_SECRET_KEY=your_strong_randomly_generated_jwt_secret_key
      HTTPS_PASSPHRASE=your_https_certificate_passphrase
      ```
-   - Ensure `BACKEND/.gitignore` includes `.env` to prevent committing secrets. (A `.gitignore` file has been added to the `BACKEND` directory for this.)
+   - **IMPORTANT SECURITY NOTE**: Never commit the `.env` file to version control. It contains sensitive credentials.
+   - Generate a strong JWT secret key using a cryptographically secure method:
+     ```bash
+     node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+     ```
 
 6. start server using `npm run start`.
 
@@ -101,6 +108,8 @@ npm install
 This application employs several security practices to ensure the safety of data and operations:
 
 - **Security Key Certificates**: Follow industry-standard practices for creating and managing security key certificates.
+
+- **JWT Security**: User authentication tokens (JWTs) are configured with a 1-hour expiration time to limit the window of potential misuse if a token is compromised. Users will need to re-authenticate after token expiration for continued access.
 
 - **Password Hashing**: User passwords are securely hashed before being stored in the database.
 

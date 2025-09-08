@@ -4,6 +4,12 @@ const jwt = require('jsonwebtoken');
 // function to check if user is authenticated
 function auth(req, res, next){
     const token = req.header('x-auth-token');
+    
+    // Check if token exists
+    if (!token) {
+        return res.status(401).json({ error: 'Access denied. No token provided.' });
+    }
+
     let id;
 
     //check if token is valid
@@ -11,7 +17,7 @@ function auth(req, res, next){
         const{ userId }= jwt.verify(token, process.env.JWT_SECRET_KEY)
         id = userId;
     } catch(err){
-        return res.sendStatus(401);
+        return res.status(401).json({ error: 'Invalid token.' });
     }
 
     //check if user is authenticated
@@ -20,7 +26,7 @@ function auth(req, res, next){
         return next();
     }
 
-    res.sendStatus(401);
+    res.status(401).json({ error: 'Access denied.' });
 }
 
 // Export the function
