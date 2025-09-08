@@ -95,12 +95,8 @@ app.use('/api/user', require('./routes/user'));
 app.use('/api/posts', require('./routes/posts'));
 
 //----------------------------------------------------
-// allow frontend to access the API
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin,X-Requested-With,Content-Type,Accept,Authorization');
-    res.setHeader('Access-Control-Allow-Methods', '*');
-    next();
-});
+// CORS configuration is handled by the cors middleware above
+// The following CORS headers were creating a security vulnerability by overriding
+// the secure CORS configuration with wildcard access. Removed for security.
 
 //----------------...ooo000 End of file 000ooo...------------------------
