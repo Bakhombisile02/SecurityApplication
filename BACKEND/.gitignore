@@ -118,6 +118,9 @@ dynamodb_local_data/
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
+# Security test files (should not be deployed)
+security-test.js
+
 # Editor directories and files
 .vscode/*
 !.vscode/settings.json

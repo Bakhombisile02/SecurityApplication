@@ -22,11 +22,18 @@ router.post('/', limiter, async (req, res) => {
     }
 
     try {
+        // Additional type checking to prevent NoSQL injection
+        if (typeof req.body.username !== 'string') {
+            return res.status(400).json({ error: 'Invalid input type for username' });
+        }
+
         // Sanitize and escape the user-provided input
         const sanitizedUsername = req.body.username.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-        // Check if the username is already taken using Mongoose unique index
-        const existingUser = await User.findOne({ username: new RegExp('^' + sanitizedUsername + '$', 'i') });
+        // Use explicit query to prevent injection
+        const existingUser = await User.findOne({ 
+            username: { $eq: sanitizedUsername } // More explicit than regex
+        });
 
         if (existingUser) {
             return res.status(400).json({ error: 'Username already exists.' });
