@@ -8,9 +8,10 @@ function auth(req, res, next){
 
     //check if token is valid
     try{
-        const{ userId }= jwt.verify(token, process.env.JWT_SECRET_KEY)
+        const{ userId }= jwt.verify(token, process.env.JWT_SECRET_KEY);
         id = userId;
-    } catch(err){
+    } catch(error){
+        console.warn('JWT verification failed:', error.message);
         return res.sendStatus(401);
     }
 

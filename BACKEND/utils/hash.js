@@ -1,5 +1,5 @@
 // Desc: hash password
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
 //-----------------------------------------------------
 //hash password
